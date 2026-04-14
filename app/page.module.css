@@ -1,10 +1,15 @@
 .pageShell {
   min-height: 100vh;
-  padding: 18px 12px 124px;
+  /* padding: 18px 12px 124px; */
 }
 
 .pageShellWithCompare {
   padding-bottom: 220px;
+}
+.buttonIconAiGen {
+  background-color: #7f8595;
+  color: #000;
+  
 }
 
 .phoneFrame {
@@ -173,18 +178,35 @@
   line-height: 1.35;
   text-align: left;
 }
-
-.needIconWrap {
+.herobutton {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 12px;
-  background: rgba(0, 74, 198, 0.1);
-  color: var(--primary);
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(0, 74, 198, 0.08);
+  margin-bottom: 24px;
 }
 
+.herobutton p {
+  margin: 0;
+  color: var(--primary);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.heroIconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroIcon {
+  width: 14px;
+  height: 14px;
+  color: var(--primary);
+}
 .needIcon,
 .buttonIcon,
 .trustIcon,
@@ -739,7 +761,7 @@
   left: 0;
   z-index: 45;
   display: grid;
-  width: min(420px, calc(100vw - 20px));
+  width: min(900px, calc(100vw - 60px));
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 14px;
   align-items: center;
@@ -772,8 +794,8 @@
 }
 
 .compareDockIcon {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
 }
 
 .compareDockCopy {
@@ -785,6 +807,8 @@
 .compareDockCopy strong {
   font-size: 0.88rem;
   font-weight: 800;
+  color: #EEF0FF;
+
 }
 
 .compareDockCopy span {
@@ -866,7 +890,7 @@
   left: 0;
   z-index: 70;
   display: flex;
-  width: min(420px, calc(100vw - 0px));
+  width: min(410px, calc(100vw - 0px));
   max-height: min(78vh, 660px);
   margin: 0 auto;
   flex-direction: column;
@@ -917,7 +941,7 @@
 }
 
 .closeSheetButton {
-  padding: 8px 0;
+  padding: 8px 20px;
   color: var(--primary);
   font-size: 0.78rem;
   font-weight: 700;
@@ -929,6 +953,7 @@
 }
 
 .sheetListItem {
+  margin-right: 20px;
   padding: 14px;
   border-radius: 18px;
   background: var(--surface-low);
@@ -993,6 +1018,7 @@
 }
 
 .sheetFooter {
+  margin-right: 20px;
   display: grid;
   gap: 14px;
 }
@@ -1101,10 +1127,36 @@
   outline-offset: 2px;
 }
 
+@media (max-width: 900px) {
+  .pageShell {
+    padding-right: 0;
+    padding-left: 0;
+    margin: 0;
+    /* background-color: red; */
+    /* background-color: red; */
+  }
+
+  .phoneFrame {
+    max-width: none;
+    min-height: 100vh;
+    border-radius: 0;
+  }
+
+  .bottomNav,
+  .bottomSheet {
+    width: 100vw;
+  }
+
+  .compareDock {
+    width: calc(100vw - 20px);
+  }
+}
+
 @media (max-width: 420px) {
   .pageShell {
     padding-right: 0;
     padding-left: 0;
+    /* background-color: red; */
   }
 
   .phoneFrame {
@@ -1125,7 +1177,10 @@
 
 @media (min-width: 768px) {
   .pageShell {
-    padding: 32px 24px 140px;
+    background-color: red;
+    /* padding: 32px 24px 140px; */
+    padding-right: 0;
+    padding-left: 0;
   }
 
   .phoneFrame {
@@ -1145,7 +1200,11 @@
   .hero {
     padding-top: 32px;
   }
-
+  .herobutton {
+    background: #004AC6;
+    display: flex;
+    flex-direction: row-reverse;
+  }
   .hero h1 {
     max-width: 520px;
     font-size: 3rem;

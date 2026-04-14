@@ -173,14 +173,17 @@ export default function LaptopStorePage() {
               <h3 className={styles.sheetTitle}>{cartProducts.length} sản phẩm đang chờ bạn</h3>
               <p className={styles.sheetSubtitle}>Giữ giá và ưu đãi giao nhanh trong hôm nay.</p>
             </div>
-            <button
-              aria-label="Đóng giỏ hàng"
-              className={styles.closeSheetButton}
-              onClick={() => setOpenSheet(null)}
-              type="button"
-            >
-              Đóng
-            </button>
+            <div>
+              <button
+                aria-label="Đóng giỏ hàng"
+                className={styles.closeSheetButton}
+                onClick={() => setOpenSheet(null)}
+                type="button"
+              >
+                Đóng
+              </button>
+            </div>
+
           </div>
 
           <div className={styles.sheetList}>
@@ -279,9 +282,8 @@ export default function LaptopStorePage() {
 
   return (
     <main
-      className={`${beVietnamPro.className} ${styles.pageShell} ${
-        compareSelection.length > 0 ? styles.pageShellWithCompare : ""
-      }`}
+      className={`${beVietnamPro.className} ${styles.pageShell} ${compareSelection.length > 0 ? styles.pageShellWithCompare : ""
+        }`}
     >
       <div className={`${inter.className} ${styles.phoneFrame}`}>
         <header className={styles.topbar}>
@@ -312,8 +314,18 @@ export default function LaptopStorePage() {
         </header>
 
         <section className={styles.hero} id="hero-section">
+          <div className={styles.herobutton}>
+            <span className={styles.heroIconWrap}>
+              <Icon name="aigen" className={styles.heroIcon} />
+            </span>
+            <p>GIẢI PHÁP CÔNG NGHỆ TỐI ƯU</p>
+
+          </div>
           <div className={styles.heroCopy}>
-            <h1>Bạn cần laptop cho việc gì?</h1>
+
+            <h1>Bạn cần laptop cho
+              nhu cầu gì?</h1>
+
             <p className={styles.heroText}>
               Chúng tôi giúp bạn tìm chiếc máy hoàn hảo, tối ưu cho nhu cầu thực tế và ngân sách của bạn.
             </p>
@@ -402,9 +414,8 @@ export default function LaptopStorePage() {
             {bestSellerProducts.map((product) => (
               <article
                 aria-label={`Xem chi tiết ${product.name}`}
-                className={`${styles.productCard} ${styles.rowCard} ${
-                  compareSelection.includes(product.slug) ? styles.rowCardSelected : ""
-                } ${styles.clickableCard}`}
+                className={`${styles.productCard} ${styles.rowCard} ${compareSelection.includes(product.slug) ? styles.rowCardSelected : ""
+                  } ${styles.clickableCard}`}
                 key={product.slug}
                 onClick={() => goToProduct(product.slug)}
                 onKeyDown={(event) => handleProductKeyDown(event, product.slug)}
