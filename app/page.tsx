@@ -18,10 +18,11 @@ import {
   testimonials,
   trustItems,
 } from "./lib/fake-db";
+import { useCompareSelection } from "./lib/useCompareSelection";
 import styles from "./page.module.css";
 
 type NavId = "home" | "categories" | "compare" | "promotions" | "account";
-type SheetId = "cart" | "compare" | "account" | null;
+type SheetId = "cart" | "account" | null;
 
 const bottomNavItems = [
   { id: "home" as const, icon: "home", label: "Trang chủ", targetId: "hero-section" },
@@ -40,7 +41,7 @@ export default function LaptopStorePage() {
   const [openSheet, setOpenSheet] = useState<SheetId>(null);
   const [sectionNav, setSectionNav] = useState<NavId>("home");
   const [selectedNeed, setSelectedNeed] = useState(needs[0]?.title ?? "");
-  const [compareSelection, setCompareSelection] = useState<string[]>([]);
+  const { selection: compareSelection, toggleSelection } = useCompareSelection();
 
   useEffect(() => {
     const sectionPairs: Array<{ id: string; nav: NavId }> = [
@@ -83,11 +84,40 @@ export default function LaptopStorePage() {
     return () => observer.disconnect();
   }, []);
 
-  const activeNav: NavId =
-    openSheet === "compare" ? "compare" : openSheet === "account" ? "account" : sectionNav;
+  useEffect(() => {
+    const query = new URLSearchParams(window.location.search);
+    const sectionId = query.get("section");
+    const sheetId = query.get("sheet");
+
+    if (sheetId === "account" || sheetId === "cart") {
+      setOpenSheet(sheetId);
+    }
+
+    if (!sectionId) {
+      return;
+    }
+
+    const frame = window.requestAnimationFrame(() => {
+      document.getElementById(sectionId)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
+  const activeNav: NavId = openSheet === "account" ? "account" : sectionNav;
 
   const comparedProducts = getProductsBySlugs(compareSelection);
   const cartTotal = cartProducts.reduce((total, product) => total + product.currentPrice, 0);
+  const compareCategories = [...new Set(comparedProducts.map((product) => product.category))];
+  const compareSummaryLabel =
+    compareCategories.length === 1
+      ? `So sánh Laptop ${compareCategories[0]}`
+      : compareCategories.length > 1
+        ? `So sánh ${compareCategories.join(" / ")}`
+        : "So sánh laptop đã chọn";
 
   const scrollToSection = (sectionId: string) => {
     setOpenSheet(null);
@@ -95,6 +125,11 @@ export default function LaptopStorePage() {
       behavior: "smooth",
       block: "start",
     });
+  };
+
+  const goToComparePage = () => {
+    setOpenSheet(null);
+    router.push("/compare");
   };
 
   const goToProduct = (slug: string) => {
@@ -109,25 +144,11 @@ export default function LaptopStorePage() {
     }
   };
 
-  const toggleCompareProduct = (productSlug: string) => {
-    setCompareSelection((current) => {
-      if (current.includes(productSlug)) {
-        return current.filter((item) => item !== productSlug);
-      }
-
-      if (current.length === 2) {
-        return [current[1], productSlug];
-      }
-
-      return [...current, productSlug];
-    });
-  };
-
   const handleBottomNavSelect = (itemId: string) => {
     const navId = itemId as NavId;
 
     if (navId === "compare") {
-      setOpenSheet("compare");
+      goToComparePage();
       return;
     }
 
@@ -205,92 +226,6 @@ export default function LaptopStorePage() {
       );
     }
 
-    if (openSheet === "compare") {
-      return (
-        <>
-          <div className={styles.sheetHeader}>
-            <div>
-              <p className={styles.sheetKicker}>So sánh laptop</p>
-              <h3 className={styles.sheetTitle}>Tối đa 2 sản phẩm</h3>
-              <p className={styles.sheetSubtitle}>Chọn trong mục bán chạy để đối chiếu cấu hình và giá.</p>
-            </div>
-            <button
-              aria-label="Đóng bảng so sánh"
-              className={styles.closeSheetButton}
-              onClick={() => setOpenSheet(null)}
-              type="button"
-            >
-              Đóng
-            </button>
-          </div>
-
-          {comparedProducts.length === 0 ? (
-            <div className={styles.emptyState}>
-              <h4>Chưa có máy để so sánh</h4>
-              <p>Nhấn vào checkbox `So sánh` ở phần bán chạy để thêm tối đa 2 laptop.</p>
-              <button
-                className={styles.primaryAction}
-                onClick={() => scrollToSection("best-seller-section")}
-                type="button"
-              >
-                Chọn laptop ngay
-              </button>
-            </div>
-          ) : (
-            <>
-              <div className={styles.sheetList}>
-                {comparedProducts.map((product) => (
-                  <article className={styles.sheetListItem} key={product.slug}>
-                    <div className={styles.sheetMeta}>
-                      <h4>{product.name}</h4>
-                      <p>{product.cardSpecs}</p>
-                      <p>
-                        {product.reviewRating.toFixed(1)} sao · {product.reviewCount} đánh giá
-                      </p>
-                    </div>
-                    <div className={styles.sheetPriceBlock}>
-                      <strong className={styles.sheetPrice}>{formatPrice(product.currentPrice)}</strong>
-                      <button
-                        className={styles.inlineLink}
-                        onClick={() => toggleCompareProduct(product.slug)}
-                        type="button"
-                      >
-                        Bỏ chọn
-                      </button>
-                    </div>
-                  </article>
-                ))}
-              </div>
-              <div className={styles.sheetFooter}>
-                <div className={styles.sheetSummary}>
-                  <div className={styles.sheetSummaryRow}>
-                    <span>Đã chọn</span>
-                    <strong>{comparedProducts.length}/2 laptop</strong>
-                  </div>
-                </div>
-                <div className={styles.sheetActions}>
-                  <button
-                    className={styles.secondaryAction}
-                    onClick={() => scrollToSection("best-seller-section")}
-                    type="button"
-                  >
-                    Chọn thêm
-                  </button>
-                  <button
-                    className={styles.primaryAction}
-                    onClick={() => goToProduct(comparedProducts[0].slug)}
-                    type="button"
-                  >
-                    So sánh ngay
-                  </button>
-                </div>
-              </div>
-            </>
-          )}
-        </>
-      );
-    }
-
     return (
       <>
         <div className={styles.sheetHeader}>
@@ -343,7 +278,11 @@ export default function LaptopStorePage() {
   };
 
   return (
-    <main className={`${beVietnamPro.className} ${styles.pageShell}`}>
+    <main
+      className={`${beVietnamPro.className} ${styles.pageShell} ${
+        compareSelection.length > 0 ? styles.pageShellWithCompare : ""
+      }`}
+    >
       <div className={`${inter.className} ${styles.phoneFrame}`}>
         <header className={styles.topbar}>
           <div className={styles.brand}>
@@ -486,7 +425,7 @@ export default function LaptopStorePage() {
                       >
                         <input
                           checked={compareSelection.includes(product.slug)}
-                          onChange={() => toggleCompareProduct(product.slug)}
+                          onChange={() => toggleSelection(product.slug)}
                           type="checkbox"
                         />
                         <span>So sánh</span>
@@ -583,6 +522,28 @@ export default function LaptopStorePage() {
           <p className={styles.footerNote}>© 2024 Laptop Store. Bảo hành chính hãng.</p>
         </footer>
       </div>
+
+      {compareSelection.length > 0 ? (
+        <div className={styles.compareDock}>
+          <button
+            aria-label="Mở trang so sánh"
+            className={styles.compareDockInfo}
+            onClick={goToComparePage}
+            type="button"
+          >
+            <span className={styles.compareDockIconWrap}>
+              <Icon className={styles.compareDockIcon} name="compare" />
+            </span>
+            <span className={styles.compareDockCopy}>
+              <strong>Đã chọn {compareSelection.length}</strong>
+              <span>{compareSummaryLabel}</span>
+            </span>
+          </button>
+          <button className={styles.compareDockButton} onClick={goToComparePage} type="button">
+            So sánh ngay
+          </button>
+        </div>
+      ) : null}
 
       <BottomNav
         activeItem={activeNav}

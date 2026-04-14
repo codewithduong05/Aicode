@@ -3,6 +3,10 @@
   padding: 18px 12px 124px;
 }
 
+.pageShellWithCompare {
+  padding-bottom: 220px;
+}
+
 .phoneFrame {
   position: relative;
   width: 100%;
@@ -728,6 +732,80 @@
   border-top-right-radius: 22px;
 }
 
+.compareDock {
+  position: fixed;
+  right: 0;
+  bottom: calc(78px + env(safe-area-inset-bottom));
+  left: 0;
+  z-index: 45;
+  display: grid;
+  width: min(420px, calc(100vw - 20px));
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  margin: 0 auto;
+  padding: 14px 16px;
+  border-radius: 24px;
+  background: #283044;
+  color: #eef0ff;
+  box-shadow: 0 22px 44px rgba(19, 27, 46, 0.28);
+}
+
+.compareDockInfo {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+}
+
+.compareDockIconWrap {
+  display: inline-flex;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: rgba(180, 197, 255, 0.18);
+  color: #b4c5ff;
+}
+
+.compareDockIcon {
+  width: 18px;
+  height: 18px;
+}
+
+.compareDockCopy {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+}
+
+.compareDockCopy strong {
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+.compareDockCopy span {
+  overflow: hidden;
+  color: rgba(238, 240, 255, 0.74);
+  font-size: 0.76rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.compareDockButton {
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-strong) 100%);
+  color: #fff;
+  font-size: 0.84rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
 .bottomNavItem {
   display: flex;
   min-width: 0;
@@ -1011,6 +1089,8 @@
 .needCard:focus-visible,
 .primaryCta:focus-visible,
 .bottomNavItem:focus-visible,
+.compareDockInfo:focus-visible,
+.compareDockButton:focus-visible,
 .clickableCard:focus-visible,
 .sheetItemButton:focus-visible,
 .closeSheetButton:focus-visible,
@@ -1036,6 +1116,10 @@
   .bottomNav,
   .bottomSheet {
     width: 100vw;
+  }
+
+  .compareDock {
+    width: calc(100vw - 20px);
   }
 }
 
@@ -1113,6 +1197,10 @@
 
   .bottomNav,
   .bottomSheet {
+    width: min(760px, calc(100vw - 48px));
+  }
+
+  .compareDock {
     width: min(760px, calc(100vw - 48px));
   }
 }
