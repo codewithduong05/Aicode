@@ -260,7 +260,8 @@ export const productsTable: ProductRecord[] = [
     name: "Dell XPS 13 Plus 9320 (Core i7 1260P | 16GB | 512GB)",
     brand: "Dell",
     collectionLabel: "Dell XPS",
-    category: "Mong nhe cao cap",
+    // category: "Mong nhe cao cap",
+    category : "Gaming",
     coverImage:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuDqDQWgEvdZQWvpNhkkyi-zklGzABA8NZAPnzPs72nSgKvNH4e21YwWEEsddBKb4bmf8xLxxLlSJ9tNSjdt_Q6Os9MRfrBJVW90xJ8Zxxqoso_6RWEgR8629vuLCaUoZbg3L7ftu0U02wD27JAR1H_cJ2BX--gimJ7UaEPaojWz7A9WF75-5y3lJpqMyZgx-xndhZ253Gb7mI7m7BOdTsJnpqwv3eYmGKRPRO_iOH7vyedHoMXvgVp6CwMar7O1yhi16mY5q1Z4-48",
     gallery: officeGallery,
