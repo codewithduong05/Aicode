@@ -1,0 +1,644 @@
+.detailShell {
+  min-height: 100vh;
+  padding-bottom: 118px;
+}
+
+.detailFrame {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  background: var(--background);
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(250, 248, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.topbarInner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: var(--text);
+}
+
+.topIcon {
+  width: 18px;
+  height: 18px;
+}
+
+.brandName {
+  color: var(--primary);
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+}
+
+.gallerySection {
+  padding: 10px 10px 0;
+  background: var(--surface-solid);
+}
+
+.galleryHero {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #0f1218;
+}
+
+.galleryHero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.galleryCounter {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.thumbnailRow {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 10px 0 2px;
+  scrollbar-width: none;
+}
+
+.thumbnailRow::-webkit-scrollbar,
+.relatedRow::-webkit-scrollbar {
+  display: none;
+}
+
+.thumbnailButton {
+  flex: 0 0 64px;
+  width: 64px;
+  height: 64px;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  background: var(--surface-low);
+}
+
+.thumbnailButton img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumbnailButtonActive {
+  border-color: var(--primary);
+}
+
+.infoSection {
+  padding: 22px 16px 0;
+}
+
+.badgeRow {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.productBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.badgeSale {
+  background: var(--error-soft);
+  color: var(--error-text);
+}
+
+.badgeFresh {
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--primary);
+}
+
+.badgeGood {
+  background: rgba(0, 127, 54, 0.12);
+  color: #007f36;
+}
+
+.productTitle {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.06rem;
+  line-height: 1.28;
+  letter-spacing: -0.03em;
+}
+
+.priceCard {
+  margin-top: 14px;
+  padding: 16px;
+  border-radius: 18px;
+  background: var(--surface-low);
+}
+
+.priceRow {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.currentPrice {
+  color: var(--secondary);
+  font-size: 1.9rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.originalPrice {
+  color: #9095a6;
+  font-size: 0.74rem;
+  text-decoration: line-through;
+}
+
+.discountChip {
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: var(--error-soft);
+  color: var(--error-text);
+  font-size: 0.56rem;
+  font-weight: 700;
+}
+
+.financingRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-soft);
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+.inlineIcon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+}
+
+.overviewSection {
+  display: grid;
+  gap: 12px;
+  padding: 18px 16px 0;
+}
+
+.overviewCard {
+  padding: 16px;
+  border-radius: 18px;
+}
+
+.overviewPositive {
+  background: rgba(0, 127, 54, 0.06);
+}
+
+.overviewCaution {
+  background: rgba(186, 26, 26, 0.05);
+}
+
+.overviewTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 12px;
+  font-size: 0.96rem;
+  font-weight: 700;
+}
+
+.overviewPositive .overviewTitle {
+  color: #007f36;
+}
+
+.overviewCaution .overviewTitle {
+  color: #ba1a1a;
+}
+
+.overviewList {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 18px;
+  color: var(--text-soft);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.highlightsSection,
+.relatedSection {
+  padding: 24px 16px 0;
+}
+
+.sectionTitle,
+.sectionTitleLarge {
+  margin: 0 0 16px;
+  color: var(--text);
+  letter-spacing: -0.03em;
+}
+
+.sectionTitle {
+  font-size: 1rem;
+}
+
+.sectionTitleLarge {
+  font-size: 1.1rem;
+}
+
+.highlightGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.highlightCard {
+  padding: 14px;
+  border-radius: 16px;
+  background: var(--surface-solid);
+  border: 1px solid rgba(195, 198, 215, 0.25);
+}
+
+.highlightIcon {
+  width: 18px;
+  height: 18px;
+  color: var(--primary);
+}
+
+.highlightLabel {
+  margin: 8px 0 4px;
+  color: #9095a6;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.highlightValue {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.tabSection {
+  margin-top: 18px;
+  background: var(--surface-solid);
+}
+
+.tabBar {
+  display: flex;
+  gap: 4px;
+  padding: 0 16px;
+  border-bottom: 1px solid rgba(195, 198, 215, 0.3);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tabBar::-webkit-scrollbar {
+  display: none;
+}
+
+.tabButton {
+  position: relative;
+  padding: 14px 2px;
+  margin-right: 18px;
+  color: #9095a6;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.tabButtonActive {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.tabButtonActive::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--primary);
+}
+
+.tabPanel {
+  padding: 18px 16px;
+}
+
+.specList {
+  display: grid;
+  gap: 12px;
+}
+
+.specRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(234, 237, 255, 0.9);
+  font-size: 0.78rem;
+}
+
+.specRow span {
+  color: var(--text-soft);
+}
+
+.specRow strong {
+  color: var(--text);
+  text-align: right;
+  font-weight: 600;
+}
+
+.specCta {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(0, 74, 198, 0.06);
+  color: var(--primary);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.reviewPanel {
+  display: grid;
+  gap: 14px;
+}
+
+.reviewSummary {
+  display: grid;
+  gap: 4px;
+  padding: 14px;
+  border-radius: 16px;
+  background: var(--surface-low);
+}
+
+.reviewSummary strong {
+  font-size: 1.28rem;
+  color: var(--text);
+}
+
+.reviewSummary span {
+  color: var(--text-soft);
+  font-size: 0.76rem;
+}
+
+.reviewPointList {
+  display: grid;
+  gap: 10px;
+}
+
+.reviewPointCard {
+  padding: 14px;
+  border-radius: 16px;
+  background: var(--surface-low);
+}
+
+.reviewPointCard h3 {
+  margin: 0 0 6px;
+  color: var(--text);
+  font-size: 0.84rem;
+}
+
+.reviewPointCard p,
+.compareTips p {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+
+.comparePanel {
+  display: grid;
+  gap: 14px;
+}
+
+.compareTips {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 16px;
+  background: var(--surface-low);
+}
+
+.compareLinks {
+  display: grid;
+  gap: 10px;
+}
+
+.compareLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  border-radius: 14px;
+  background: rgba(0, 74, 198, 0.06);
+  color: var(--primary);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.relatedRow {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.relatedCard {
+  flex: 0 0 170px;
+  overflow: hidden;
+  border-radius: 18px;
+  background: var(--surface-solid);
+  box-shadow: 0 12px 28px rgba(19, 27, 46, 0.08);
+}
+
+.relatedImageWrap {
+  height: 120px;
+  background: #11151f;
+}
+
+.relatedImageWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.relatedBody {
+  padding: 12px;
+}
+
+.relatedLabel {
+  margin: 0 0 4px;
+  color: #9095a6;
+  font-size: 0.62rem;
+}
+
+.relatedBody h3 {
+  margin: 0 0 8px;
+  color: var(--text);
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.relatedPrice {
+  margin: 0;
+  color: var(--secondary);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.footer {
+  display: grid;
+  gap: 18px;
+  padding: 28px 16px 24px;
+  margin-top: 16px;
+  border-top: 1px solid rgba(195, 198, 215, 0.3);
+  background: rgba(255, 255, 255, 0.48);
+}
+
+.footerBrand {
+  margin: 0 0 10px;
+  color: var(--primary);
+  font-size: 0.95rem;
+  font-weight: 900;
+}
+
+.footerText {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.74rem;
+  line-height: 1.6;
+}
+
+.footerLinks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 16px;
+}
+
+.footerLinks a {
+  color: var(--text-soft);
+  font-size: 0.74rem;
+}
+
+.purchaseBar {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 40;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 -10px 30px rgba(19, 27, 46, 0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.purchaseBarInner {
+  width: min(420px, 100vw);
+  margin: 0 auto;
+  padding: 12px 12px calc(12px + env(safe-area-inset-bottom));
+}
+
+.zaloButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-strong) 100%);
+  color: #fff;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.zaloIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.backLink:focus-visible,
+.thumbnailButton:focus-visible,
+.tabButton:focus-visible,
+.specCta:focus-visible,
+.compareLink:focus-visible,
+.relatedCard:focus-visible,
+.zaloButton:focus-visible {
+  outline: 2px solid rgba(0, 74, 198, 0.4);
+  outline-offset: 2px;
+}
+
+@media (min-width: 768px) {
+  .detailShell {
+    padding-top: 28px;
+    padding-bottom: 128px;
+  }
+
+  .detailFrame {
+    max-width: 760px;
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(19, 27, 46, 0.12);
+  }
+
+  .gallerySection,
+  .infoSection,
+  .overviewSection,
+  .highlightsSection,
+  .relatedSection,
+  .footer,
+  .tabBar,
+  .tabPanel {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .gallerySection {
+    padding-top: 18px;
+  }
+
+  .highlightGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .relatedCard {
+    flex-basis: 220px;
+  }
+
+  .purchaseBarInner {
+    width: min(760px, calc(100vw - 48px));
+  }
+}

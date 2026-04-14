@@ -31,6 +31,12 @@ const paths: Record<string, ReactNode> = {
       <path {...common} d="M3.5 5h2l2.2 9.2a1 1 0 0 0 1 .8h8.8a1 1 0 0 0 1-.8L20.5 8H7" />
     </>
   ),
+  "arrow-left": (
+    <>
+      <path {...common} d="M19 12H5" />
+      <path {...common} d="m11 6-6 6 6 6" />
+    </>
+  ),
   briefcase: (
     <>
       <rect {...common} x="4" y="7" width="16" height="11" rx="2" />
@@ -67,9 +73,71 @@ const paths: Record<string, ReactNode> = {
       <path {...common} d="M3.5 18h17" />
     </>
   ),
+  cpu: (
+    <>
+      <rect {...common} x="7" y="7" width="10" height="10" rx="2" />
+      <path {...common} d="M9 1.5V5" />
+      <path {...common} d="M15 1.5V5" />
+      <path {...common} d="M9 19v3.5" />
+      <path {...common} d="M15 19v3.5" />
+      <path {...common} d="M1.5 9H5" />
+      <path {...common} d="M1.5 15H5" />
+      <path {...common} d="M19 9h3.5" />
+      <path {...common} d="M19 15h3.5" />
+    </>
+  ),
+  gpu: (
+    <>
+      <rect {...common} x="4.5" y="6" width="15" height="12" rx="2" />
+      <path {...common} d="M8 10h8" />
+      <path {...common} d="M8 14h4" />
+      <path {...common} d="M19.5 10.5h2" />
+      <path {...common} d="M19.5 13.5h2" />
+    </>
+  ),
+  display: (
+    <>
+      <rect {...common} x="4" y="5" width="16" height="11" rx="2" />
+      <path {...common} d="M10 19h4" />
+      <path {...common} d="M8 21h8" />
+    </>
+  ),
+  storage: (
+    <>
+      <rect {...common} x="4" y="6" width="16" height="12" rx="2" />
+      <path {...common} d="M8 10h8" />
+      <path {...common} d="M8 14h5" />
+    </>
+  ),
+  bag: (
+    <>
+      <path {...common} d="M6 9h12l1 10H5L6 9Z" />
+      <path {...common} d="M9 9V7a3 3 0 0 1 6 0v2" />
+    </>
+  ),
   spark: (
     <>
       <path {...common} d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z" />
+    </>
+  ),
+  payments: (
+    <>
+      <rect {...common} x="3.5" y="6" width="17" height="12" rx="2" />
+      <path {...common} d="M3.5 10h17" />
+      <path {...common} d="M7 14h4" />
+    </>
+  ),
+  verified: (
+    <>
+      <path {...common} d="M12 4 6.5 6v4.5c0 4 2.2 6.4 5.5 8 3.3-1.6 5.5-4 5.5-8V6L12 4Z" />
+      <path {...common} d="m9.5 12 1.7 1.7 3.6-3.8" />
+    </>
+  ),
+  alert: (
+    <>
+      <circle {...common} cx="12" cy="12" r="8.5" />
+      <path {...common} d="M12 8v5" />
+      <circle {...common} cx="12" cy="16.5" r=".5" />
     </>
   ),
   shield: <path {...common} d="M12 4 6.5 6v4.5c0 4 2.2 6.4 5.5 8 3.3-1.6 5.5-4 5.5-8V6L12 4Z" />, 
@@ -137,6 +205,13 @@ const paths: Record<string, ReactNode> = {
     <>
       <circle {...common} cx="12" cy="8" r="3" />
       <path {...common} d="M5.5 19a6.5 6.5 0 0 1 13 0" />
+    </>
+  ),
+  chat: (
+    <>
+      <path {...common} d="M6 7.5h12a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H10l-4 3v-3H6a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2Z" />
+      <path {...common} d="M8.5 12h7" />
+      <path {...common} d="M8.5 9.5h5" />
     </>
   ),
 };
