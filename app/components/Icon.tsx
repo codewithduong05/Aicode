@@ -222,6 +222,23 @@ const paths: Record<string, ReactNode> = {
       <path {...common} d="M8.5 9.5h5" />
     </>
   ),
+  search: (
+    <>
+      <circle {...common} cx="11" cy="11" r="8" />
+      <path {...common} d="m21 21-4.3-4.3" />
+    </>
+  ),
+  tuning: (
+    <>
+      <path {...common} d="M3 5h4M11 5h10M17 12h4M3 12h10M11 19h10M3 19h4" />
+      <circle {...common} cx="9" cy="5" r="2" />
+      <circle {...common} cx="15" cy="12" r="2" />
+      <circle {...common} cx="9" cy="19" r="2" />
+    </>
+  ),
+  "chevron-right": <path {...common} d="m9 18 6-6-6-6" />,
+  "chevron-down": <path {...common} d="m6 9 6 6 6-6" />,
+  x: <path {...common} d="M18 6 6 18M6 6l12 12" />,
 };
 
 export default function Icon({ name, className = "" }: IconProps) {
