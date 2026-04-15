@@ -35,7 +35,6 @@ const bottomNavItems = [
   { id: "account" as const, icon: "user", label: "Tài khoản" },
 ];
 
-const flashSaleProducts = getProductsBySlugs(homeCollections.flashSaleSlugs);
 const bestSellerProducts = getProductsBySlugs(homeCollections.bestSellerSlugs);
 const cartProducts = getProductsBySlugs(homeCollections.cartSlugs);
 
@@ -46,6 +45,40 @@ export default function LaptopStorePage() {
   const [sectionNav, setSectionNav] = useState<NavId>("home");
   const [selectedNeed, setSelectedNeed] = useState(needs[0]?.title ?? "");
   const { selection: compareSelection, toggleSelection } = useCompareSelection();
+
+  // Flash Sale Timer & Product State
+  const [timeLeft, setTimeLeft] = useState(8095); // Matches 02:14:55
+  const [activeFlashSlugs, setActiveFlashSlugs] = useState(homeCollections.flashSaleSlugs);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          // Swap products when timer ends
+          const availableProducts = productsTable.filter(p => !activeFlashSlugs.includes(p.slug));
+          const newSlugs = availableProducts
+            .sort(() => 0.5 - Math.random())
+            .slice(0, 2)
+            .map(p => p.slug);
+
+          setActiveFlashSlugs(newSlugs);
+          return 8095; // Restart countdown
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [activeFlashSlugs]);
+
+  const formatTime = (seconds: number) => {
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = seconds % 60;
+    return `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
+  };
+
+  const flashSaleProducts = getProductsBySlugs(activeFlashSlugs);
 
   useEffect(() => {
     if (activeView !== "home") return;
@@ -399,7 +432,7 @@ export default function LaptopStorePage() {
                 accent={
                   <>
                     <Icon name="spark" className={styles.flashIcon} />
-                    <span className={styles.timerPill}>02:14:55</span>
+                    <span className={styles.timerPill}>{formatTime(timeLeft)}</span>
                   </>
                 }
               />
