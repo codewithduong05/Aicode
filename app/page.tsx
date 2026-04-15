@@ -40,6 +40,14 @@ const bottomNavItems = [
 
 const bestSellerProducts = getProductsBySlugs(homeCollections.bestSellerSlugs);
 const cartProducts = getProductsBySlugs(homeCollections.cartSlugs);
+const expertArticles = articlesTable.slice(0, 3);
+
+const priceFilters = [
+  { id: "p1", label: "Dưới 15tr", min: 0, max: 15000000 },
+  { id: "p2", label: "15 - 25tr", min: 15000000, max: 25000000 },
+  { id: "p3", label: "25 - 35tr", min: 25000000, max: 35000000 },
+  { id: "p4", label: "Trên 35tr", min: 35000000, max: 999999999 },
+];
 
 export default function LaptopStorePage() {
   const router = useRouter();
@@ -48,6 +56,7 @@ export default function LaptopStorePage() {
   const [openSheet, setOpenSheet] = useState<SheetId>(null);
   const [sectionNav, setSectionNav] = useState<NavId>("home");
   const [selectedNeed, setSelectedNeed] = useState(needs[0]?.title ?? "");
+  const [selectedPriceId, setSelectedPriceId] = useState(priceFilters[0].id);
   const { selection: compareSelection, toggleSelection } = useCompareSelection();
 
   // Flash Sale Timer & Product State
@@ -83,6 +92,11 @@ export default function LaptopStorePage() {
   };
 
   const flashSaleProducts = getProductsBySlugs(activeFlashSlugs);
+
+  const activePriceFilter = priceFilters.find((f) => f.id === selectedPriceId)!;
+  const filteredNewProducts = productsTable.filter(
+    (p) => p.currentPrice >= activePriceFilter.min && p.currentPrice < activePriceFilter.max
+  ).slice(0, 4);
 
   useEffect(() => {
     if (activeView !== "home") return;
@@ -198,6 +212,19 @@ export default function LaptopStorePage() {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
       goToProduct(slug);
+    }
+  };
+
+  const goToArticle = (slug: string) => {
+    setActiveArticleSlug(slug);
+    setActiveView("news-detail");
+    window.scrollTo(0, 0);
+  };
+
+  const handleArticleKeyDown = (event: KeyboardEvent<HTMLElement>, slug: string) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      goToArticle(slug);
     }
   };
 
@@ -442,6 +469,55 @@ export default function LaptopStorePage() {
               ))}
             </section>
 
+            <section className={styles.contentSection}>
+              <h2 className={styles.budgetTitle}>Laptop theo ngân sách</h2>
+              <div className={styles.priceFilterRow}>
+                {priceFilters.map((filter) => (
+                  <button
+                    key={filter.id}
+                    className={`${styles.priceFilterBtn} ${selectedPriceId === filter.id ? styles.priceFilterBtnActive : ""
+                      }`}
+                    onClick={() => setSelectedPriceId(filter.id)}
+                    type="button"
+                  >
+                    {filter.label}
+                  </button>
+                ))}
+              </div>
+            </section>
+
+            <section className={styles.contentSection}>
+              <SectionTitle title="Sản phẩm mới về" rightLabel="Xem tất cả" />
+              <div className={styles.newArrivalsGrid}>
+                {filteredNewProducts.map((product) => (
+                  <article
+                    key={product.slug}
+                    className={styles.newArrivalCard}
+                    onClick={() => goToProduct(product.slug)}
+                  >
+                    <div className={styles.newArrivalImage}>
+                      <img src={product.coverImage} alt={product.name} />
+                    </div>
+                    <div className={styles.newArrivalInfo}>
+                      <h3>{product.name}</h3>
+                      <p className={styles.newArrivalPrice}>{formatPrice(product.currentPrice)}</p>
+                      <div className={styles.newArrivalBadges}>
+                        {product.badges.map((b) => (
+                          <span
+                            key={b.label}
+                            className={`${styles.miniBadge} ${b.tone === "good" ? styles.miniBadgeGreen : styles.miniBadgeBlue
+                              }`}
+                          >
+                            {b.label}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+
             <section className={styles.contentSection} id="flash-sale-section">
               <SectionTitle
                 title="Flash Sale"
@@ -483,7 +559,35 @@ export default function LaptopStorePage() {
                 })}
               </div>
             </section>
+            <section className={styles.contentSection}>
+              <SectionTitle title="Góc nhìn từ Chuyên gia" rightLabel="Xem tất cả" />
+              <div className={styles.expertHorizontalScroll}>
+                {expertArticles.map((article) => (
+                  <article
+                    aria-label={`Đọc bài viết ${article.title}`}
+                    className={styles.expertArticleCard}
+                    key={article.slug}
+                    onClick={() => goToArticle(article.slug)}
+                    onKeyDown={(event) => handleArticleKeyDown(event, article.slug)}
+                    role="link"
+                    tabIndex={0}
+                  >
+                    <div className={styles.expertArticleImage}>
+                      <img alt={article.title} src={article.coverImage} />
+                    </div>
+                    <div className={styles.expertArticleContent}>
+                      <h3>{article.title}</h3>
+                      <div className={styles.expertArticleFooter}>
+                        <span className={styles.readTime}>{article.readTime}</span>
+                        <span className={styles.detailLink}>Xem chi tiết →</span>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
 
+
+            </section>
             <section className={styles.contentSection} id="best-seller-section">
               <SectionTitle title="Bán chạy nhất" />
               <div className={styles.stackList}>
