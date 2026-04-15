@@ -89,7 +89,7 @@ export default function LaptopStorePage() {
 
     const sectionPairs: Array<{ id: string; nav: NavId }> = [
       { id: "hero-section", nav: "home" },
-      { id: "flash-sale-section", nav: "promotions" },
+      { id: "flash-sale-section", nav: "home" },
       { id: "categories-section", nav: "categories" },
     ];
 
