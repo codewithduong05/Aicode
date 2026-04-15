@@ -192,7 +192,9 @@
   font-size: 0.56rem;
   font-weight: 700;
 }
-
+.financingPrice {
+  color:  var(--primary);
+}
 .financingRow {
   display: flex;
   align-items: center;
@@ -567,7 +569,7 @@
 }
 
 .purchaseBarInner {
-  width: min(420px, 100vw);
+  /* width: min(420px, 100vw); */
   margin: 0 auto;
   padding: 12px 12px calc(12px + env(safe-area-inset-bottom));
 }

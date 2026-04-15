@@ -97,7 +97,10 @@ export default function ProductDetailPage({
             </div>
             <div className={styles.financingRow}>
               <Icon className={styles.inlineIcon} name="payments" />
-              <span>{product.financingText}</span>
+              <span>
+                {product.financText}
+                
+                <span className={styles.financingPrice}>{product.financingText}</span></span>
             </div>
           </div>
         </section>

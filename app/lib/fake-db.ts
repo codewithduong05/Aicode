@@ -35,6 +35,7 @@ export interface ProductRecord {
   reviewRating: number;
   reviewCount: number;
   badges: ProductBadge[];
+  financText? :  string;
   financingText: string;
   cartNote: string;
   fitForYou: string[];
@@ -114,7 +115,9 @@ export const productsTable: ProductRecord[] = [
       { label: "Bán chạy", tone: "sale" },
       { label: "Mới về", tone: "good" },
     ],
-    financingText: "Trả góp 0% chỉ từ 1.950.000đ/tháng",
+    // financText: `Trả góp 0% chỉ từ <span className="financingText">${1950000}/tháng</span>`,
+    financText : "Trả góp 0% chỉ từ ",
+    financingText: "1.950.000đ/tháng",
     cartNote: "Giữ giá online đến 23:59 hôm nay",
     fitForYou: [
       "Bạn cần một chiếc laptop gaming bền bỉ đạt chuẩn quân đội.",
@@ -166,7 +169,8 @@ export const productsTable: ProductRecord[] = [
     reviewRating: 4.6,
     reviewCount: 74,
     badges: [{ label: "Gia tot", tone: "sale" }],
-    financingText: "Tra gop 0% chi tu 1.820.000đ/thang",
+    financText : "Tra gop 0% chi tu ",
+    financingText: "1.820.000đ/thang",
     cartNote: "Con 4 may o kho mien Nam",
     fitForYou: [
       "Ban can may gaming RTX 4050 de vao game va render co ban.",
@@ -218,7 +222,8 @@ export const productsTable: ProductRecord[] = [
     reviewRating: 4.9,
     reviewCount: 89,
     badges: [{ label: "On dinh", tone: "good" }],
-    financingText: "Tra gop 0% chi tu 2.410.000đ/thang",
+    financText:"Tra gop 0% chi tu ",
+    financingText: "2.410.000đ/thang",
     cartNote: "Co san phien ban RAM 32GB dat truoc",
     fitForYou: [
       "Ban uu tien tan nhiet va trai nghiem choi game on dinh duoi tai nang.",
@@ -271,7 +276,8 @@ export const productsTable: ProductRecord[] = [
     reviewRating: 4.7,
     reviewCount: 96,
     badges: [{ label: "Flash Sale", tone: "sale" }],
-    financingText: "Tra gop 0% chi tu 2.910.000đ/thang",
+     financText:"Tra gop 0% chi tu ",
+    financingText: "2.910.000đ/thang",
     cartNote: "Bao hanh chinh hang 24 thang",
     fitForYou: [
       "Ban uu tien thiet ke cao cap va man hinh dep cho moi cuoc hop.",
@@ -323,7 +329,8 @@ export const productsTable: ProductRecord[] = [
     reviewRating: 4.9,
     reviewCount: 203,
     badges: [{ label: "Flash Sale", tone: "sale" }],
-    financingText: "Tra gop 0% chi tu 2.050.000đ/thang",
+     financText:"Tra gop 0% chi tu ",
+    financingText: "2.050.000đ/thang",
     cartNote: "Mau midnight giao nhanh trong 2 gio",
     fitForYou: [
       "Ban can may gon nhe, pin ben cho di hoc va di hop ca ngay.",
@@ -375,7 +382,8 @@ export const productsTable: ProductRecord[] = [
     reviewRating: 4.8,
     reviewCount: 124,
     badges: [{ label: "Bán chạy", tone: "sale" }],
-    financingText: "Tra gop 0% chi tu 1.210.000đ/thang",
+     financText:"Tra gop 0% chi tu ",
+    financingText: "1.210.000đ/thang",
     cartNote: "Tang balo va chuot khi mua online",
     fitForYou: [
       "Ban can laptop de hoc tap, office va hop online o muc gia de tiep can.",
