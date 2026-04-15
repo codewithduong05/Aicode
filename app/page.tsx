@@ -5,14 +5,18 @@ import { useRouter } from "next/navigation";
 import BottomNav from "./components/BottomNav";
 import CategoryView from "./components/CategoryView";
 import Icon from "./components/Icon";
+import NewsDetailView from "./components/NewsDetailView";
+import NewsView from "./components/NewsView";
 import SectionTitle from "./components/SectionTitle";
 import { beVietnamPro, inter } from "./fonts";
 import {
   accountShortcuts,
+  articlesTable,
   calculateDiscountPercent,
   categoryCards,
   footerLinks,
   formatPrice,
+  getArticleBySlug,
   getProductsBySlugs,
   homeCollections,
   needs,
@@ -23,16 +27,15 @@ import {
 import { useCompareSelection } from "./lib/useCompareSelection";
 import styles from "./page.module.css";
 
-type NavId = "home" | "categories" | "compare" | "promotions" | "account";
+type NavId = "home" | "categories" | "compare" | "news";
 type SheetId = "cart" | "account" | null;
-type ViewId = "home" | "category";
+type ViewId = "home" | "category" | "news" | "news-detail";
 
 const bottomNavItems = [
   { id: "home" as const, icon: "home", label: "Trang chủ", targetId: "hero-section" },
   { id: "categories" as const, icon: "grid", label: "Danh mục", targetId: "categories-section" },
   { id: "compare" as const, icon: "compare", label: "So sánh" },
-  { id: "promotions" as const, icon: "tag", label: "Khuyến mãi", targetId: "flash-sale-section" },
-  { id: "account" as const, icon: "user", label: "Tài khoản" },
+  { id: "news" as const, icon: "news", label: "Tin tức" },
 ];
 
 const bestSellerProducts = getProductsBySlugs(homeCollections.bestSellerSlugs);
@@ -41,6 +44,7 @@ const cartProducts = getProductsBySlugs(homeCollections.cartSlugs);
 export default function LaptopStorePage() {
   const router = useRouter();
   const [activeView, setActiveView] = useState<ViewId>("home");
+  const [activeArticleSlug, setActiveArticleSlug] = useState<string | null>(null);
   const [openSheet, setOpenSheet] = useState<SheetId>(null);
   const [sectionNav, setSectionNav] = useState<NavId>("home");
   const [selectedNeed, setSelectedNeed] = useState(needs[0]?.title ?? "");
@@ -137,6 +141,10 @@ export default function LaptopStorePage() {
       setActiveView("category");
     }
 
+    if (viewId === "news") {
+      setActiveView("news");
+    }
+
     if (!sectionId) {
       return;
     }
@@ -151,7 +159,12 @@ export default function LaptopStorePage() {
     return () => window.cancelAnimationFrame(frame);
   }, []);
 
-  const activeNav: NavId = openSheet === "account" ? "account" : activeView === "category" ? "categories" : sectionNav;
+  const activeNav: NavId =
+    openSheet === "account" ? "news" :
+      activeView === "category" ? "categories" :
+        activeView === "news" || activeView === "news-detail" ? "news" :
+          sectionNav === "compare" ? "compare" :
+            sectionNav as NavId;
 
   const comparedProducts = getProductsBySlugs(compareSelection);
   const cartTotal = cartProducts.reduce((total, product) => total + product.currentPrice, 0);
@@ -208,8 +221,9 @@ export default function LaptopStorePage() {
       return;
     }
 
-    if (navId === "account") {
-      setOpenSheet("account");
+    if (navId === "news") {
+      setActiveView("news");
+      window.scrollTo(0, 0);
       return;
     }
 
@@ -592,11 +606,26 @@ export default function LaptopStorePage() {
               <p className={styles.footerNote}>© 2024 Laptop Store. Bảo hành chính hãng.</p>
             </footer>
           </>
-        ) : (
+        ) : activeView === "category" ? (
           <CategoryView
             categoryName="Laptop Gaming"
-            initialProducts={productsTable.filter(p => p.category === "Gaming")}
+            initialProducts={productsTable.filter((p) => p.category === "Gaming")}
             onBack={() => setActiveView("home")}
+            onGoToProduct={goToProduct}
+          />
+        ) : activeView === "news" ? (
+          <NewsView
+            onBack={() => setActiveView("home")}
+            onSelectArticle={(slug) => {
+              setActiveArticleSlug(slug);
+              setActiveView("news-detail");
+              window.scrollTo(0, 0);
+            }}
+          />
+        ) : (
+          <NewsDetailView
+            article={getArticleBySlug(activeArticleSlug!)!}
+            onBack={() => setActiveView("news")}
             onGoToProduct={goToProduct}
           />
         )}

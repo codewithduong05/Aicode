@@ -238,7 +238,17 @@ const paths: Record<string, ReactNode> = {
   ),
   "chevron-right": <path {...common} d="m9 18 6-6-6-6" />,
   "chevron-down": <path {...common} d="m6 9 6 6 6-6" />,
-  x: <path {...common} d="M18 6 6 18M6 6l12 12" />,
+   x: <path {...common} d="M18 6 6 18M6 6l12 12" />,
+  "chevron-left": <path {...common} d="m15 18-6-6 6-6" />,
+  news: (
+    <>
+      <path {...common} d="M4 19.5h14c1.1 0 2-.9 2-2V4.5H4v15Z" />
+      <path {...common} d="M4 19.5c0 1.1.9 2 2 2h14" />
+      <path {...common} d="M8 7h8" />
+      <path {...common} d="M8 11h8" />
+      <path {...common} d="M8 15h5" />
+    </>
+  ),
 };
 
 export default function Icon({ name, className = "" }: IconProps) {

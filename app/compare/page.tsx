@@ -13,8 +13,7 @@ const bottomNavItems = [
   { id: "home", icon: "home", label: "Trang chủ" },
   { id: "categories", icon: "grid", label: "Danh mục" },
   { id: "compare", icon: "compare", label: "So sánh" },
-  { id: "promotions", icon: "tag", label: "Khuyến mãi" },
-  { id: "account", icon: "user", label: "Tài khoản" },
+  { id: "news", icon: "news", label: "Tin tức" },
 ];
 
 export default function ComparePage() {
@@ -30,17 +29,12 @@ export default function ComparePage() {
     }
 
     if (itemId === "categories") {
-      router.push("/?section=categories-section");
+      router.push("/?view=category");
       return;
     }
 
-    if (itemId === "promotions") {
-      router.push("/?section=flash-sale-section");
-      return;
-    }
-
-    if (itemId === "account") {
-      router.push("/?sheet=account");
+    if (itemId === "news") {
+      router.push("/?view=news");
       return;
     }
 

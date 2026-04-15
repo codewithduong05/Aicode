@@ -75,6 +75,27 @@ export interface AccountShortcut {
   description: string;
 }
 
+export interface ArticleAuthor {
+  id: string;
+  name: string;
+  role: string;
+  avatar: string;
+}
+
+export interface Article {
+  slug: string;
+  category: string;
+  categoryBadgeColor?: string; // e.g. "red", "blue", "green"
+  title: string;
+  summary: string;
+  content: string;
+  coverImage: string;
+  publishedAt: string;
+  readTime: string;
+  authorId: string;
+  relatedProductSlugs?: string[];
+}
+
 const tufGallery = [
   "https://lh3.googleusercontent.com/aida-public/AB6AXuBkmUpJ7aUGi5xMH1QBH7eWBXNTet7mQdMvN32Fr1QG5uH7h4gYnu18llsl0ScRxNnLFo-qKiRbqOm1LKDPI3DYzrz_twgEM3_ZTSaL_swJ0QCsxr9MygnRyCnFlVct8v5xr1lRACp4Np49f3TJqrAQckH13GOn8fLkA_OJNIax-tdRAo96XYHY0ggzG4NgqKGZ9sVRNNJ2pszqKLOUcfD--vk9Tqxt0mUmlLz_QsLw8Rn0g-uX_2yu2BOiLhHl_gGbxVJ5tg4Z0WU",
   "https://lh3.googleusercontent.com/aida-public/AB6AXuCy1Zwcj20BZTwXaxJ7RgeCzROPorTRxIDS18LEt9zmVpcc5C1ckmMTU6QBj7ns_n0x9I91x48sfgHqEMBSRWMEyWS2rqncwNFojQnx81Q7zSDo72iQxJO4p5k0JeXC7OppPjsqiXIO-FnL7BHWTPa6xPJr0WCuwrVMkqb0bUEUXRto0s_USQKQcva2cNE6X9Uft3ZSWnJ_h_jS9RrthsxgXCTW8V3IP821L9oZkyEXfTFxkr2QPgLwTUJv5Ku3ORJx9TMOgEkU8Og",
@@ -515,4 +536,95 @@ export function calculateDiscountPercent(currentPrice: number, originalPrice?: n
   }
 
   return Math.round(((originalPrice - currentPrice) / originalPrice) * 100);
+}
+
+export const authorsTable: ArticleAuthor[] = [
+  {
+    id: "minh-duc",
+    name: "Minh Đức",
+    role: "Chuyên gia phần cứng",
+    avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuDndiQDGat1Sufu7LzA3xPipy6LMQT2qsIqMN7-LL9PiD4D8Xq3vtC6M93ov7OtwtIbkeZll_hjP7EX13NB05itW8buZXUdFMomCH4difWs8lJmfxr7h3ZHYUmyY3uCPnFeKVblFeiCE_mWV0tk8RWiBKehmUR9_NDq0OlM9T7VTySreaQe62W7Ap9NSzQ0w0OB2uOldOKMS77R-wFQi8VDpd5lctUJMGX1kPle0t-DttOGtW42kDJjq5JZoRua8IYbj_cAZ8a2hBw",
+  },
+  {
+    id: "hoang-yen",
+    name: "Hoàng Yến",
+    role: "Reviewer công nghệ",
+    avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuAi79TGFC2xqAh9fNpE2JV6XsoLLKvRwgYQ7Yea_HoxlAghW-UklN3imuv7SHY8KT_FgO3MrpiUOeO-F432_sD8wEmSnIxjfukyfrHVlZ45jgt07uUh9NGec-xfvZhK_7SgcHgpi-QotJa5lryUwzyOQjm1mBMIq85OMPOMMFIGgqBAHrT2_Ae3ygWXALB542qbXeyUnAqvR5C4M9EDMNsDJYIkJInHTljkdQ2T85RU5jQCpBcCJLndu6ixucc3e1ayzwUK6_GUOU",
+  }
+];
+
+export const articlesTable: Article[] = [
+  {
+    slug: "cho-laptop-gaming-sinh-vien-2024",
+    category: "TƯ VẤN CHỌN MUA",
+    categoryBadgeColor: "#ffdad6",
+    title: "Cách chọn Laptop Gaming cho tân sinh viên 2024",
+    summary: "Mùa tựu trường đang đến gần, việc lựa chọn một chiếc laptop vừa phục vụ học tập vừa đáp ứng nhu cầu giải trí đỉnh cao là bài toán khó. Cùng chuyên gia Digital Curator khám phá những tiêu chí vàng mang lại hiệu năng tối ưu nhất...",
+    content: "Việc chọn mua laptop gaming cho sinh viên không chỉ dừng lại ở cấu hình phần cứng mạnh mẽ mà còn phải cân đối giữa khả năng di động và độ bền. 1. CPU & GPU: Luôn ưu tiên bộ đôi i7 thế hệ 13 hoặc Ryzen 7 kèm RTX 40-series. 2. Màn hình: 144Hz là tiêu chuẩn tối thiểu để trải nghiệm gaming mượt mà. 3. Pin & Sạc: Cần sạc nhanh vì các tác vụ nặng sẽ ngốn pin khá nhanh.",
+    coverImage: "https://lh3.googleusercontent.com/aida-public/AB6AXuDS_ewTF87qIQBNL3YJf5UwRPOZCPM4rHiupWLAbOsGkCEXfgyr_vuZIJdIUe5Mei7gkr-zivOcUa4F7qIUtTtPc_xtGTK0HV4eCy5J5fxM0NuItN5nBtzwDeDISBDWQ2SAdNocojSigGl0lWEwcDC6PZDOyLGSSQFLqhlVhQJBMqblIv5EBLhbmx8X_OoJUxpPHedx9qmXOPDN70FoWrvcji__tLyOpTJG9rFvwqd7ijKiQmDBV3sRzXbqWXUFBIgKnfz_AjDOPlY",
+    publishedAt: "12/08/2024",
+    readTime: "8 phút đọc",
+    authorId: "minh-duc",
+    relatedProductSlugs: ["asus-tuf-gaming-a15-fa507nu-lp034w", "msi-katana-15-b13vek-252vn"]
+  },
+  {
+    slug: "meo-toi-uu-windows-11",
+    category: "THỦ THUẬT",
+    categoryBadgeColor: "#fff4d6",
+    title: "5 mẹo tối ưu hiệu năng Windows 11 cực kỳ đơn giản",
+    summary: "Làm sao để chiếc laptop của bạn luôn mượt mà như lúc mới mua? Sau đây là 5 bước dọn dẹp và tối ưu hệ thống nhanh chóng cho người dùng Windows...",
+    content: "1. Tắt các ứng dụng chạy ngầm không cần thiết. 2. Dọn dẹp ổ đĩa hệ thống định kỳ. 3. Cập nhật driver Card đồ họa mới nhất. 4. Tùy chỉnh Power Plan sang Best Performance. 5. Gỡ bỏ Bloatware...",
+    coverImage: officeGallery[0],
+    publishedAt: "4 giờ trước",
+    readTime: "5 phút đọc",
+    authorId: "hoang-yen",
+    relatedProductSlugs: ["dell-xps-13-plus-9320"]
+  },
+  {
+    slug: "danh-gia-dell-xps-15-2024",
+    category: "REVIEW",
+    categoryBadgeColor: "#e0f2f1",
+    title: "Đánh giá Dell XPS 15 (2024): Đỉnh cao của sự tinh tế",
+    summary: "Dòng Laptop doanh nhân đẳng cấp nhất của Dell có thiết kế mới cùng những cải tiến ấn tượng về hiệu năng và màn hình OLED 3.5K siêu sắc nét...",
+    content: "Dell XPS 15 luôn được coi là chuẩn mực của laptop Windows cao cấp. Phiên bản 2024 mang đến chip Intel Core Ultra mới nhất, bàn phím vô hình độc đáo và trackpad phản hồi haptic cực nhạy. Màn hình OLED vần là điểm sáng lớn nhất...",
+    coverImage: officeGallery[1],
+    publishedAt: "1 ngày trước",
+    readTime: "12 phút đọc",
+    authorId: "minh-duc",
+    relatedProductSlugs: ["dell-xps-13-plus-9320"]
+  },
+  {
+    slug: "the-he-chip-moi-40-percent",
+    category: "TIN TỨC",
+    categoryBadgeColor: "#e3f2fd",
+    title: "Lộ diện thế hệ Chip mới: Hiệu năng tăng 40%",
+    summary: "Những thông tin rò rỉ mới nhất về những dòng vi xử lý dành cho laptop ra mắt cuối năm nay hứa hẹn sự bùng nổ về sức mạnh đa nhân...",
+    content: "Các báo cáo từ chuỗi cung ứng cho thấy thế hệ vi xử lý tiếp theo sẽ tập trung mạnh vào AI tích hợp và khả năng tối ưu điện năng. Hiệu suất xử lý đồ họa tích hợp có thể tăng vọt, biến laptop mỏng nhẹ thành cỗ máy làm việc thực thụ...",
+    coverImage: gamingGallery[0],
+    publishedAt: "2 ngày trước",
+    readTime: "4 phút đọc",
+    authorId: "hoang-yen",
+    relatedProductSlugs: ["lenovo-legion-5-15iah7h"]
+  },
+  {
+    slug: "minimalist-workspace-laptop",
+    category: "DECOR",
+    categoryBadgeColor: "#f5f5f5",
+    title: "Xây dựng góc làm việc Minimalist cùng Laptop",
+    summary: "Gợi ý cách set-up không gian làm việc tối giản, tinh tế giúp tăng cảm hứng và hiệu suất làm việc mỗi ngày cho giới trẻ hiện đại...",
+    content: "Một góc làm việc tối giản không chỉ đẹp mà còn giúp bạn tập trung hơn. Đầu tiên hãy bắt đầu bằng việc giấu dây cáp. Sử dụng một chiếc giá đỡ laptop để cải thiện tư thế ngồi. Thêm một chút mảng xanh từ cây nhỏ để cân bằng không gian...",
+    coverImage: "https://lh3.googleusercontent.com/aida-public/AB6AXuDS_ewTF87qIQBNL3YJf5UwRPOZCPM4rHiupWLAbOsGkCEXfgyr_vuZIJdIUe5Mei7gkr-zivOcUa4F7qIUtTtPc_xtGTK0HV4eCy5J5fxM0NuItN5nBtzwDeDISBDWQ2SAdNocojSigGl0lWEwcDC6PZDOyLGSSQFLqhlVhQJBMqblIv5EBLhbmx8X_OoJUxpPHedx9qmXOPDN70FoWrvcji__tLyOpTJG9rFvwqd7ijKiQmDBV3sRzXbqWXUFBIgKnfz_AjDOPlY",
+    publishedAt: "28/07/2024",
+    readTime: "10 phút đọc",
+    authorId: "minh-duc",
+    relatedProductSlugs: ["macbook-air-m2-8gb-256gb", "asus-vivobook-15-x1504va"]
+  }
+];
+
+export function getArticleBySlug(slug: string) {
+  return articlesTable.find((a) => a.slug === slug);
+}
+
+export function getAuthorById(id: string) {
+  return authorsTable.find((a) => a.id === id);
 }
