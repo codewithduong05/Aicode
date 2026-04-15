@@ -35,7 +35,7 @@ export interface ProductRecord {
   reviewRating: number;
   reviewCount: number;
   badges: ProductBadge[];
-  financText? :  string;
+  financText?: string;
   financingText: string;
   cartNote: string;
   fitForYou: string[];
@@ -68,6 +68,8 @@ export interface Testimonial {
   role: string;
   quote: string;
   avatar: string;
+  star: number;
+  date: string;
 }
 
 export interface AccountShortcut {
@@ -137,7 +139,7 @@ export const productsTable: ProductRecord[] = [
       { label: "Mới về", tone: "good" },
     ],
     // financText: `Trả góp 0% chỉ từ <span className="financingText">${1950000}/tháng</span>`,
-    financText : "Trả góp 0% chỉ từ ",
+    financText: "Trả góp 0% chỉ từ ",
     financingText: "1.950.000đ/tháng",
     cartNote: "Giữ giá online đến 23:59 hôm nay",
     fitForYou: [
@@ -190,7 +192,7 @@ export const productsTable: ProductRecord[] = [
     reviewRating: 4.6,
     reviewCount: 74,
     badges: [{ label: "Gia tot", tone: "sale" }],
-    financText : "Tra gop 0% chi tu ",
+    financText: "Tra gop 0% chi tu ",
     financingText: "1.820.000đ/thang",
     cartNote: "Con 4 may o kho mien Nam",
     fitForYou: [
@@ -243,7 +245,7 @@ export const productsTable: ProductRecord[] = [
     reviewRating: 4.9,
     reviewCount: 89,
     badges: [{ label: "On dinh", tone: "good" }],
-    financText:"Tra gop 0% chi tu ",
+    financText: "Tra gop 0% chi tu ",
     financingText: "2.410.000đ/thang",
     cartNote: "Co san phien ban RAM 32GB dat truoc",
     fitForYou: [
@@ -287,7 +289,7 @@ export const productsTable: ProductRecord[] = [
     brand: "Dell",
     collectionLabel: "Dell XPS",
     // category: "Mong nhe cao cap",
-    category : "Gaming",
+    category: "Gaming",
     coverImage:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuDqDQWgEvdZQWvpNhkkyi-zklGzABA8NZAPnzPs72nSgKvNH4e21YwWEEsddBKb4bmf8xLxxLlSJ9tNSjdt_Q6Os9MRfrBJVW90xJ8Zxxqoso_6RWEgR8629vuLCaUoZbg3L7ftu0U02wD27JAR1H_cJ2BX--gimJ7UaEPaojWz7A9WF75-5y3lJpqMyZgx-xndhZ253Gb7mI7m7BOdTsJnpqwv3eYmGKRPRO_iOH7vyedHoMXvgVp6CwMar7O1yhi16mY5q1Z4-48",
     gallery: officeGallery,
@@ -297,7 +299,7 @@ export const productsTable: ProductRecord[] = [
     reviewRating: 4.7,
     reviewCount: 96,
     badges: [{ label: "Flash Sale", tone: "sale" }],
-     financText:"Tra gop 0% chi tu ",
+    financText: "Tra gop 0% chi tu ",
     financingText: "2.910.000đ/thang",
     cartNote: "Bao hanh chinh hang 24 thang",
     fitForYou: [
@@ -350,7 +352,7 @@ export const productsTable: ProductRecord[] = [
     reviewRating: 4.9,
     reviewCount: 203,
     badges: [{ label: "Flash Sale", tone: "sale" }],
-     financText:"Tra gop 0% chi tu ",
+    financText: "Tra gop 0% chi tu ",
     financingText: "2.050.000đ/thang",
     cartNote: "Mau midnight giao nhanh trong 2 gio",
     fitForYou: [
@@ -403,7 +405,7 @@ export const productsTable: ProductRecord[] = [
     reviewRating: 4.8,
     reviewCount: 124,
     badges: [{ label: "Bán chạy", tone: "sale" }],
-     financText:"Tra gop 0% chi tu ",
+    financText: "Tra gop 0% chi tu ",
     financingText: "1.210.000đ/thang",
     cartNote: "Tang balo va chuot khi mua online",
     fitForYou: [
@@ -473,14 +475,20 @@ export const categoryCards: CategoryCard[] = [
 
 export const testimonials: Testimonial[] = [
   {
+    star: 5,
+    date: "2 ngày trước ",
     name: "Minh Phan",
     role: "Lập trình viên",
     quote:
       "Máy tính ở đây luôn được tuyển chọn kỹ. Mình được tư vấn đúng cấu hình cho code mà không bị ép mua máy quá đắt.",
     avatar:
       "https://lh3.googleusercontent.com/aida-public/AB6AXuDndiQDGat1Sufu7LzA3xPipy6LMQT2qsIqMN7-LL9PiD4D8Xq3vtC6M93ov7OtwtIbkeZll_hjP7EX13NB05itW8buZXUdFMomCH4difWs8lJmfxr7h3ZHYUmyY3uCPnFeKVblFeiCE_mWV0tk8RWiBKehmUR9_NDq0OlM9T7VTySreaQe62W7Ap9NSzQ0w0OB2uOldOKMS77R-wFQi8VDpd5lctUJMGX1kPle0t-DttOGtW42kDJjq5JZoRua8IYbj_cAZ8a2hBw",
+
   },
+
   {
+    star: 4,
+    date: "1 ngày trước ",
     name: "Trang Nguyễn",
     role: "Marketing Lead",
     quote:

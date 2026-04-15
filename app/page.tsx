@@ -357,32 +357,35 @@ export default function LaptopStorePage() {
         }`}
     >
       <div className={`${inter.className} ${styles.phoneFrame}`}>
-        <header className={styles.topbar}>
-          <div className={styles.brand}>
+        {activeView !== "news" ? (<>
+          <header className={styles.topbar}>
+            <div className={styles.brand}>
+              <button
+                aria-label="Mở danh mục nhanh"
+                className={styles.iconButton}
+                onClick={() => scrollToSection("categories-section")}
+                type="button"
+              >
+                <Icon name="menu" className={styles.icon} />
+              </button>
+              <button className={styles.brandButton} onClick={() => setActiveView("home")} type="button">
+                <span className={styles.brandName}>Laptop Store</span>
+              </button>
+            </div>
+
             <button
-              aria-label="Mở danh mục nhanh"
-              className={styles.iconButton}
-              onClick={() => scrollToSection("categories-section")}
+              aria-expanded={openSheet === "cart"}
+              aria-label="Mở giỏ hàng"
+              className={`${styles.iconButton} ${styles.cartButton}`}
+              onClick={() => setOpenSheet((current) => (current === "cart" ? null : "cart"))}
               type="button"
             >
-              <Icon name="menu" className={styles.icon} />
+              <Icon name="cart" className={styles.icon} />
+              <span className={styles.cartCount}>{cartProducts.length}</span>
             </button>
-            <button className={styles.brandButton} onClick={() => setActiveView("home")} type="button">
-              <span className={styles.brandName}>Laptop Store</span>
-            </button>
-          </div>
+          </header>
 
-          <button
-            aria-expanded={openSheet === "cart"}
-            aria-label="Mở giỏ hàng"
-            className={`${styles.iconButton} ${styles.cartButton}`}
-            onClick={() => setOpenSheet((current) => (current === "cart" ? null : "cart"))}
-            type="button"
-          >
-            <Icon name="cart" className={styles.icon} />
-            <span className={styles.cartCount}>{cartProducts.length}</span>
-          </button>
-        </header>
+        </>) : <div></div>}
 
         {activeView === "home" ? (
           <>
@@ -551,10 +554,23 @@ export default function LaptopStorePage() {
                 {testimonials.map((item) => (
                   <article className={styles.reviewCard} key={item.name}>
                     <div className={styles.reviewUser}>
-                      <img alt={item.name} src={item.avatar} />
-                      <div>
-                        <h3>{item.name}</h3>
-                        <p>{item.role}</p>
+                      <div className={styles.reviewUserStar}>
+                        <img alt={item.name} src={item.avatar} />
+                        <div>
+                          <h3>{item.name}</h3>
+                          <div className={styles.starsWrapper}>
+                            {[...Array(5)].map((_, i) => (
+                              <Icon
+                                key={i}
+                                name="star"
+                                className={i < item.star ? styles.starIconFilled : styles.starIconEmpty}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                      <div className={styles.reviewDate}>
+                        <p>{item.date}</p>
                       </div>
                     </div>
                     <blockquote>{`"${item.quote}"`}</blockquote>

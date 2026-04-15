@@ -164,7 +164,7 @@ const paths: Record<string, ReactNode> = {
       <circle {...common} cx="15" cy="12" r=".7" />
     </>
   ),
-  star: <path {...common} d="m12 4 2.4 4.9 5.4.8-3.9 3.8.9 5.5L12 16.7 7.2 19l.9-5.5-3.9-3.8 5.4-.8L12 4Z" />,
+  star: <path d="m12 4 2.4 4.9 5.4.8-3.9 3.8.9 5.5L12 16.7 7.2 19l.9-5.5-3.9-3.8 5.4-.8L12 4Z" fill="currentColor" />,
   call: (
     <>
       <path

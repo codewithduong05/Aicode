@@ -583,29 +583,64 @@
 
 .reviewRow {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   overflow-x: auto;
-  padding-bottom: 4px;
+  padding: 10px 0 20px;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.reviewUserStar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.starsWrapper {
+  display: flex;
+  gap: 2px;
+  margin-top: 4px;
 }
 
 .reviewCard {
-  flex: 0 0 260px;
-  padding: 18px;
-  border-radius: 24px;
+  flex: 0 0 100%;
+  padding: 24px;
+  border-radius: 32px;
+  scroll-snap-align: center;
+  box-sizing: border-box;
+  background: #fff;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
 }
 
 .reviewUser {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
+  justify-content: space-between;
   gap: 12px;
   margin-bottom: 14px;
 }
 
 .reviewUser img {
-  width: 42px;
-  height: 42px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+.starIconFilled {
+  width: 14px;
+  height: 14px;
+  color: #f59e0b;
+  fill: #f59e0b;
+}
+
+.starIconEmpty {
+  width: 14px;
+  height: 14px;
+  color: #e5e7eb;
+  fill: #e5e7eb;
 }
 
 .reviewUser h3 {
@@ -614,9 +649,11 @@
   font-family: "Inter", sans-serif;
 }
 
-.reviewUser p {
+.reviewUser p,
+.reviewDate p {
   margin: 3px 0 0;
   font-size: 0.68rem;
+  color: #666;
 }
 
 .reviewCard blockquote {
@@ -1231,7 +1268,7 @@
 
   .reviewRow {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(1, minmax(0, 1fr));
     overflow: visible;
   }
 
